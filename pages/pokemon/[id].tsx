@@ -1,9 +1,14 @@
+import { useEffect, useState } from 'react';
+
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { useRouter } from 'next/router'
+import { Button, Card, Container, Grid, Image, Text } from '@nextui-org/react';
+
 import { Layout } from '../../components/layouts'
 import pokeApi from '../../api/pokeApi';
 import { Pokemon } from '../../interfaces';
-import { Button, Card, Container, Grid, Image, Text } from '@nextui-org/react';
+import { existInFavorites, toggleFavorite } from '../../utils';
+// import { toggleFavorite } from '../../utils';
+// import { existInFavorites, toggleFavorite } from '../../utils/localFavotire';
 
 interface Props {
   pokeDataOne: Pokemon
@@ -11,12 +16,24 @@ interface Props {
 
 const PokemonPage: NextPage<Props> = ({ pokeDataOne }) => {
 
-  const { query } = useRouter()
-  console.log("hola mundo: ${query.id}")
+  const [isInFavorite, setIsInFavorite] = useState(existInFavorites(pokeDataOne.id))
+
+  useEffect(() => {
+
+    setIsInFavorite(existInFavorites(pokeDataOne.id))
+
+  }, [pokeDataOne.id])
+
+
+  const onToggleFavorite = () => {
+    // console.log(`ID: ${pokeDataOne.id}}`);
+    toggleFavorite(pokeDataOne.id);
+    setIsInFavorite(!isInFavorite);
+  }
 
 
   return (
-    <Layout title='Algún Pokemon'>
+    <Layout title={pokeDataOne.name}>
 
       <Grid.Container css={{ marginTop: '5px' }} gap={2} >
 
@@ -39,9 +56,10 @@ const PokemonPage: NextPage<Props> = ({ pokeDataOne }) => {
             <Card.Header css={{ display: 'flex', justifyContent: 'space-between' }} >
               <Text h1 transform='capitalize' >{pokeDataOne.name}</Text>
 
-              <Button color='gradient' ghost >
-                Guardar en Favoritos
+              <Button onPress={onToggleFavorite} color='gradient' ghost={!isInFavorite} >
+                {isInFavorite ? 'Esta en Favoritos' : 'Guardar en Favoritos'}
               </Button>
+
             </Card.Header>
 
             <Card.Body >
@@ -72,8 +90,8 @@ const PokemonPage: NextPage<Props> = ({ pokeDataOne }) => {
                   width={100}
                   height={100}
                 />
-
               </Container>
+
             </Card.Body>
 
           </Card>

@@ -12,19 +12,19 @@ export const PokeCard: FC<Props> = ({ pokemon }) => {
 
   const router = useRouter();
 
-  const onClick = () => {
+  const onPress = () => {
     router.push(`/pokemon/${id}`)
   }
 
   return (
     <Grid xs={6} sm={3} md={2} xl={1}>
-      <Card isHoverable isPressable onClick={onClick} >
+      <Card isHoverable isPressable onPress={onPress} >
 
         <Card.Body css={{ p: 1, maxHeight: "150px" }} >
           <Card.Image
             src={img}
             objectFit='scale-down'
-            width="100%"
+            width="50%"
             alt={name}
           />
         </Card.Body>
