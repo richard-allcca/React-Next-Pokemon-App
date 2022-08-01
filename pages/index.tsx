@@ -12,8 +12,10 @@ interface Props {
 
 const Home: NextPage<Props> = ({ pokeData }) => {
 
+
   return (
     <Layout title='Richard'>
+
       <Grid.Container gap={2} justify='flex-start' >
         {
           pokeData.map((pokemon) => {
