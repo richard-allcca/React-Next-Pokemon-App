@@ -125,7 +125,7 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
     //     params: { id: '1' }
     //   },
     // ],
-    paths: pokemons151.map((value, id) => ({
+    paths: pokemons151.map((id) => ({
       params: { id: String(id) }
     })),
     // fallback: "blocking" // ? valor por defecto
