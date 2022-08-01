@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { Button, Card, Container, Grid, Image, Text } from '@nextui-org/react';
@@ -12,7 +12,7 @@ interface Props {
   pokeDataOne: Pokemon
 }
 
-const PokemonPage: FC<Props> = ({ pokeDataOne }) => {
+const PokemonPage: NextPage<Props> = ({ pokeDataOne }) => {
 
   const [isInFavorite, setIsInFavorite] = useState(existInFavorites(pokeDataOne.id))
 
@@ -116,8 +116,8 @@ const PokemonPage: FC<Props> = ({ pokeDataOne }) => {
 // You should use getStaticPaths if you’re statically pre-rendering pages that use dynamic routes
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
 
-  //? crea un array de objetos con los ids de los pokemones, 151
-  const pokemons151 = [...Array(151).map((value, i) => `${i + 1}`)]
+  // //? crea un array de objetos con los ids de los pokemones, 151
+  const pokemons151 = [...Array(151)].map((value, index) => `${index + 1}`)
 
   return {
     // paths: [ //? método original
@@ -125,8 +125,8 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
     //     params: { id: '1' }
     //   },
     // ],
-    paths: pokemons151.map((id) => ({
-      params: { id: String(id) }
+    paths: pokemons151.map(id => ({
+      params: { id }
     })),
     // fallback: "blocking" // ? valor por defecto
     fallback: false
