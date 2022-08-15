@@ -1,14 +1,20 @@
 # App Pokemon
 
-- Aplicación con Next
-- Rutas Dinámicas Utilizando `GetStaticPath`
-- Static Site Generation Utilizando `GetStaticProps`
+- Aplicación con Next, probando caracteristicas especiales de Next.js
 
 ## Enlaces
 
-- [Open Graph](https://ahrefs.com/blog/open-graph-meta-tags/)
+- `GetStaticPath` Rutas Dinámicas Utilizando
 - [Next.js getStaticPaths](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths)
+  
+- `GetStaticProps` Static Site Generation Utilizando
 - [Next.js getStaticProps](https://nextjs.org/docs/basic-features/data-fetching/get-static-props)
+  
+- `ISR` Incremental static regeneration
+- [Next.js Incremental Static Regeneration](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration)
+  
+- `Meta data SEO`
+- [Open Graph](https://ahrefs.com/blog/open-graph-meta-tags/)
 
 ## Desplegado en Vercel
 
