@@ -1,17 +1,18 @@
-import type { GetStaticProps, NextPage } from 'next'
-import { Grid } from '@nextui-org/react'
+import type { GetStaticProps, NextPage } from 'next';
 
-import { pokeApi } from '../api'
-import { Layout } from '../components/layouts'
-import { PokemonListResponse, SmallPokemon } from '../interfaces'
-import { PokeCard } from '../components/pokemon/PokeCard';
+import { Grid } from '@nextui-org/react';
+
+import { Layout } from '../components/layouts';
+import { PokeCard } from '../components/pokemon';
+import { pokeApi } from '../api';
+
+import { PokemonListResponse, SmallPokemon } from '../interfaces';
 
 interface Props {
-  pokeData: SmallPokemon[]
+  pokeData: SmallPokemon[];
 }
 
 const Home: NextPage<Props> = ({ pokeData }) => {
-
 
   return (
     <Layout title='Richard'>
@@ -19,18 +20,21 @@ const Home: NextPage<Props> = ({ pokeData }) => {
       <Grid.Container gap={2} justify='flex-start' >
         {
           pokeData.map((pokemon) => {
-            return <PokeCard pokemon={pokemon} key={pokemon.id} />
+            return <PokeCard pokemon={pokemon} key={pokemon.id} />;
           })
         }
       </Grid.Container>
+
     </Layout>
-  )
-}
+  );
+};
 
-
-/**
- * Crea el contenido inicial de una página antes de ser creada.
- * Solo se ejecuta en el lado del servidor && durante el build
+/* STUB - SSG: Static-site generation, nada de esta llega al cliente
+  - esta funcion se ejecuta del lado del servidor en el builtime
+  - puede leer file system, leer ddbb, hacer peticiones http mandando secretToken
+  - usala solo cuando sepas cuales son las props que usara este componente
+  - crea las pages de antemano con los datos preinsertaados, clase 47 min 9
+  - solo en desarrollo se llamara en cada que se ejecute esta pagina
  */
 export const getStaticProps: GetStaticProps = async (ctx) => {
 
@@ -39,9 +43,8 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const pokeData: SmallPokemon[] = data.results.map((poke, i) => ({
     ...poke,
     id: i + 1,
-    name: poke.name,
     img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${i + 1}.svg`
-  }))
+  }));
 
   // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/132.svg
 
@@ -49,7 +52,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     props: {
       pokeData
     }
-  }
-}
+  };
+};
 
-export default Home
+export default Home;
