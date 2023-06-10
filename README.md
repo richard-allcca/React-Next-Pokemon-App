@@ -48,6 +48,16 @@ Next - getStaticPaths
 
     En resumen, la diferencia principal radica en si el contenido se genera completamente sin ninguna modificación adicional antes de guardarlo como un archivo HTML estático ("automatically rendered as static HTML"), o si se genera automáticamente con algún procesamiento o personalización adicional antes de guardarlo como un archivo HTML estático ("automatically generated as static HTML").
 
+- EXAMPLE (getStaticPaths) return:
+
+      return {
+        paths: [
+           {
+             params: { id: '1' }
+           },
+        ],
+      }
+
 ## Enlaces
 
 - `GetStaticPath` Rutas Dinámicas Utilizando

@@ -12,9 +12,11 @@ interface Props {
 }
 
 export const IndividualPokemonCard: FC<Props> = ({ pokemon }) => {
+  // EXAMPLE fallido del profe
+  // const [isInFavorite, setIsInFavorite] = useState(existInFavorites(pokemon.id));
 
-
-  const [isInFavorite, setIsInFavorite] = useState(existInFavorites(pokemon.id));
+  // Solución al ejemplo fallido
+  const [isInFavorite, setIsInFavorite] = useState(false);
 
   useEffect(() => {
     setIsInFavorite(existInFavorites(pokemon.id));
@@ -26,7 +28,6 @@ export const IndividualPokemonCard: FC<Props> = ({ pokemon }) => {
     setIsInFavorite(!isInFavorite);
   };
 
-  // Animacion de favoritos
   if (isInFavorite) {
     confetti({
       zIndex: 999,
@@ -35,21 +36,25 @@ export const IndividualPokemonCard: FC<Props> = ({ pokemon }) => {
       angle: -100,
       origin: { x: 1, y: 0 },
     });
-
   }
 
   return (
     <Card>
-      <Card.Header css={{ display: 'flex', justifyContent: 'space-between' }} >
+      <Card.Header
+        css={{ display: 'flex', justifyContent: 'space-between' }}
+      >
         <Text h1 transform='capitalize' >{pokemon.name}</Text>
 
-        <Button onPress={onToggleFavorite} color='gradient' ghost={!isInFavorite} >
+        <Button
+          onClick={onToggleFavorite}
+          color='gradient'
+          ghost={!isInFavorite}
+        >
           {isInFavorite ? 'Esta en Favoritos' : 'Guardar en Favoritos'}
         </Button>
       </Card.Header>
 
       <Card.Body >
-
         <Text size={30} >Sprites:</Text>
 
         <Container display='flex' direction='row' gap={1} >

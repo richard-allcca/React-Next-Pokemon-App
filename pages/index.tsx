@@ -12,6 +12,10 @@ interface Props {
   pokeData: SmallPokemon[];
 }
 
+/*
+* (SSG) Static-site generation, genera las card de pokemon con una sola petición
+* luego de ser generada se guarda como html static y no hará mas peticiones
+ */
 const Home: NextPage<Props> = ({ pokeData }) => {
 
   return (

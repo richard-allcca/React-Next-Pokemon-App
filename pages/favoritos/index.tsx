@@ -17,13 +17,11 @@ const FavoritosPage = () => {
 
   return (
     <Layout title="Pokémons - Favoritos" >
-
       {
         favoritePokemon.length === 0
           ? (<NoFavorites />)
           : (<FavoritePokemons favorites={favoritePokemon} />)
       }
-
     </Layout>
   )
 }

@@ -1,25 +1,21 @@
 import { FC } from 'react';
-
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 
 import { Card, Grid } from '@nextui-org/react';
 
-import pokeApi from '../../api/pokeApi';
 import { Layout } from '../../components/layouts';
 import { Pokemon, PokemonListResponse } from '../../interfaces';
 import { getPokemonInfo } from '../../utils';
 import { IndividualPokemonCard } from '../../components/ui';
-
+import pokeApi from '../../api/pokeApi';
 interface Props {
   pokemon: Pokemon;
 }
 
-const PokemonByNamePage: FC<Props> = ({ pokemon }) => {
-
-
+const PokemonByNamePage: NextPage<Props> = ({ pokemon }) => {
+// const PokemonByNamePage: FC<Props> = ({ pokemon }) => {
   return (
     <Layout title={pokemon.name}>
-
       <Grid.Container css={{ marginTop: '5px' }} gap={2} >
 
         <Grid xs={12} sm={4} >
@@ -36,18 +32,21 @@ const PokemonByNamePage: FC<Props> = ({ pokemon }) => {
         </Grid>
 
         <Grid xs={12} sm={8} >
-
           <IndividualPokemonCard pokemon={pokemon} />
-
         </Grid>
 
       </Grid.Container>
-
     </Layout>
   );
 };
 
+export default PokemonByNamePage;
 
+/**
+ * Usa un filtro para evitar enviar data innecesaria a getStaticProps
+ * You should use getStaticPaths if you’re statically pre-rendering pages that use dynamic routes
+ * @returns params que usara el getStaticProps
+ */
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
 
   const { data } = await pokeApi.get<PokemonListResponse>('/pokemon?limit=151)');
@@ -55,25 +54,21 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 
   return {
     paths: pokemonNames.map(name => ({
-      params: { name: name }
+      params: { name }
     })),
-    // fallback: false // false para enviar a error 404
-    fallback: 'blocking'
+    fallback: 'blocking' /* permite params no definidos aqui */
+    // fallback: false  /* evita params no definidos reenvia a 404 */
   };
 };
 
-
-/* STUB - SSG: Static-site generation, nada de esta llega al cliente
-  - esta funcion se ejecuta del lado del servidor en el builtime
-  - puede leer file system, leer ddbb, hacer peticiones http mandando secretToken
-  - usala solo cuando sepas cuales son las props que usara este componente
-  - crea las pages de antemano con los datos preinsertaados, clase 47 min 9
-  - solo en desarrollo se llamara en cada que se ejecute esta pagina
+/**
+ * descripción de getStaticProps en page index.tsx
+ * @param ctx contexto desde donde se puede leer los params de getStaticPaths
+ * @returns props que usara la pagina
  */
 export const getStaticProps: GetStaticProps = async (ctx) => {
 
-  // usamos "as" para el tipo que pide en {id}
-  const { name } = ctx.params as { name: string; };
+  const { name } = ctx.params as { name: string; };// "as" para el tipo de {name}
 
   const pokemon = await getPokemonInfo(name);
 
@@ -87,11 +82,9 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   }
 
   return {
-    props: { // props que recibe componente
+    props: { // props enviada al componente
       pokemon
     },
-    revalidate: 86400 // segundos para volver a pedir la data
+    revalidate: 86400 // tiempo para volver a pedir la data
   };
 };
-
-export default PokemonByNamePage; 

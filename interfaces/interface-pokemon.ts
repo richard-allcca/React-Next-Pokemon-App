@@ -1,3 +1,4 @@
+// Lista completa de todos los pokemon
 export interface PokemonListResponse {
   count: number;
   next?: string;
@@ -5,6 +6,7 @@ export interface PokemonListResponse {
   results: SmallPokemon[];
 }
 
+// Info resumida de un solo pokemon
 export interface SmallPokemon {
   id: number;
   name: string;

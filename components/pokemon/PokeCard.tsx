@@ -12,13 +12,15 @@ export const PokeCard: FC<Props> = ({ pokemon }) => {
 
   const router = useRouter();
 
+  // TODO - verifica que se quede como onPress
+
   const onPress = () => {
     router.push(`/name/${name}`)
   }
 
   return (
     <Grid xs={6} sm={3} md={2} xl={1}>
-      <Card isHoverable isPressable onPress={onPress} >
+      <Card isHoverable isPressable onClick={onPress} >
 
         <Card.Body css={{ p: 1, maxHeight: "150px" }} >
           <Card.Image
@@ -42,3 +44,4 @@ export const PokeCard: FC<Props> = ({ pokemon }) => {
     </Grid>
   )
 }
+
