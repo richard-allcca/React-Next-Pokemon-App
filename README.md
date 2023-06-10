@@ -2,6 +2,10 @@
 
 - Aplicación con Next, probando caracteristicas especiales de Next.js
 
+## Desplegado en Vercel
+
+- [Ver en linea](https://next-pokemon-app-beta.vercel.app/)
+
 ## Contenido de temas usados en este proyecto
 
 Multiples componentes de NextUI
@@ -71,10 +75,6 @@ Next - getStaticPaths
   
 - `Meta data SEO`
 - [Open Graph](https://ahrefs.com/blog/open-graph-meta-tags/)
-
-## Desplegado en Vercel
-
--[Vista en linea](https://next-pokemon-app-beta.vercel.app/)
 
 ## Vista Previa
 
