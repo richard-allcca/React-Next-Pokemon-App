@@ -76,7 +76,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     return {
       redirect: {
         destination: '/',
-        permanent: false,
+        permanent: false, // false da posibilidad de intentar entrar en la ruta nueva
       }
     };
   }
