@@ -8,27 +8,29 @@
 
 ## Contenido de temas usados en este proyecto
 
-Multiples componentes de NextUI
+1. Multiples componentes de NextUI
 
-Flex Layout
+2. Theme Dark con NextUIProvider
 
-Temas de NextUI
+3. Flex Layout
 
-Next _document
+4. Temas de NextUI
 
-Navegación
+5. Next _document
 
-Parámetros por URL
+6. Navegación
 
-Parámetros estáticos
+7. Parámetros por URL
 
-Next - GetStaticProps (SSG: Static-site generation)
+8. Parámetros estáticos
 
-Next - getStaticPaths
+9. Next - GetStaticProps (SSG: Static-site generation)
 
-(ISG) - Incremental Static Generation:
+10. Next - getStaticPaths
 
-(ISR) - Incremental Static Regeneration:
+11. (ISG) - Incremental Static Generation:
+
+12. (ISR) - Incremental Static Regeneration:
 
 ## NPM
 

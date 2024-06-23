@@ -57,6 +57,3 @@ export const Navbar = () => {
     </>
   )
 }
-
-// Notas:
-// passHref: para que el path reciba el url
